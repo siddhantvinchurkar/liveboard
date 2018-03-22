@@ -39,6 +39,9 @@
 			
 			// Get a reference to the database service
 			var database = firebase.database();
+			database.ref('/<?php echo $_POST['psuedonym']; ?>').on('value', function(snapshot) {
+			document.getElementById('board').value = snapshot.val();
+			});
 			function updater(){
 			database.ref('/<?php echo $_POST['psuedonym']; ?>/').set(document.getElementById('board').value);
 			}
