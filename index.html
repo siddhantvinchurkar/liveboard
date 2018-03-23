@@ -11,15 +11,15 @@
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 		<!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="theme-color" content="#FFFFFF">
+		<meta name="theme-color" content="#EE6E73">
 		<meta name="Description" content="Collaborate with your friends, teachers, colleagues, etc. to broadcast public boards viewable worldwide using a simple psuedonym.">
 	</head>
 	<title>Liveboard - Real time, collaborative boards</title>
-	<body>
+	<body bgcolor="#F6F6F6">
 		<p id="heading" style="font-family: 'Ubuntu', sans-serif; font-size:8em; text-align:center; color:#FF0000;">Live<span style="color:rgba(0,0,0,0.87);">board</span><img src="images/logo.png" width="10%" height="10%" alt="Unable to load image" /></p>
 		<nav id="nav" style="display:none;">
 			<div class="nav-wrapper">
-				<a style="font-family: 'Ubuntu', sans-serif; font-size:3em; color:#FFFFFF;" href="../">Live<span style="color:rgba(0,0,0,0.87);">board</span></a>
+				<a style="font-family: 'Ubuntu', sans-serif; font-size:3em; color:#FFFFFF;" href="#">Live<span style="color:rgba(0,0,0,0.87);">board</span></a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li style="font-family: 'Ubuntu', sans-serif; font-size:1em;">Broadcast your board to the world!<span>&emsp;&emsp;</span></li>
 				</ul>
@@ -50,12 +50,28 @@
 		</main>
 		<p style="font-family: 'Ubuntu', sans-serif; font-size:1em; text-align:center;" id="myfoot"></p>
 		<script>
-			if(screen.width<1075) {
-			document.getElementById('heading').style.display = "none";
-			document.getElementById('nav').style.display = "block";
-			document.getElementById('form').style = "margin-top:20em";
-			document.getElementById('cardsize').className = "col s12 m6 offset-m3";
+			if(screen.availWidth<1075) {
+				document.getElementById('heading').style.display = "none";
+				document.getElementById('nav').style.display = "block";
+				document.getElementById('form').style = "margin-top:20em";
+				document.getElementById('cardsize').className = "col s12 m6 offset-m3";
 			}
+			
+			window.onresize = function(event) {
+				if(window.outerWidth<1075) {
+					document.getElementById('heading').style.display = "none";
+					document.getElementById('nav').style.display = "block";
+					document.getElementById('form').style = "margin-top:20em";
+					document.getElementById('cardsize').className = "col s12 m6 offset-m3";
+				}
+					else {
+					document.getElementById('heading').style.display = "block";
+					document.getElementById('nav').style.display = "none";
+					document.getElementById('form').style = "";
+					document.getElementById('cardsize').className = "col s12 m4 offset-m4";
+				}
+			};
+			
 		</script>
 		<script>
 			document.getElementById('myfoot').innerHTML = '&copy; ' + new Date().getFullYear() + ' <a href="https://volatile.ga/" target="_blank" rel="noopener">Volatile, Inc.</a> Made with love for everyone.';
