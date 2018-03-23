@@ -20,12 +20,20 @@
 			<div class="nav-wrapper">
 				<a style="font-family: 'Ubuntu', sans-serif; font-size:3em; color:#FFFFFF;" href="../">Live<span style="color:rgba(0,0,0,0.87);">board</span></a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li style="font-family: 'Ubuntu', sans-serif; font-size:1em;">You're broadcasting to the world! Anyone with your psuedonym "<?php echo $_POST['psuedonym']; ?>" can watch you.<span>&emsp;&emsp;</span></li>
+					<li style="font-family: 'Ubuntu', sans-serif; font-size:1em;">You're broadcasting to the world! Anyone with your pseudonym "<?php echo $_POST['psuedonym']; ?>" can watch you.<span>&emsp;&emsp;</span></li>
 				</ul>
 			</div>
 		</nav>
 		<main>
-			<textarea id="board" rows="50" cols="50" style="font-family: 'Ubuntu', sans-serif; font-size:3em; height:11.7em; background:#FFFFFF;" oninput="updater();" placeholder="Start typing!" autofocus></textarea>
+			<!-- Switch -->
+			<div class="switch" style="font-family: 'Ubuntu', sans-serif; font-size:1em; text-align:center; background:#EE6E73; padding-bottom:1em;;">
+				<label style="color:#FFFFFF;">
+				<input type="checkbox" id="collaborate" onchange="handleCollaborate();">
+				<span class="lever"></span>
+				Collaborate
+				</label>
+			</div>
+			<textarea id="board" rows="50" cols="50" style="font-family: 'Ubuntu', sans-serif; font-size:3em; height:10.9em; background:#FFFFFF;" oninput="updater();" placeholder="Start typing!" autofocus></textarea>
 		</main>
 		<p style="font-family: 'Ubuntu', sans-serif; font-size:1em; text-align:center;" id="myfoot"></p>
 		<script>
@@ -46,12 +54,24 @@
 			
 			// Get a reference to the database service
 			var database = firebase.database();
-			database.ref('/<?php echo $_POST['psuedonym']; ?>').on('value', function(snapshot) {
+			database.ref('/<?php echo $_POST['psuedonym']; ?>/inuse').set(true);
+			database.ref('/<?php echo $_POST['psuedonym']; ?>/inuse').onDisconnect().set(false);
+			database.ref('/<?php echo $_POST['psuedonym']; ?>/message').on('value', function(snapshot) {
 			document.getElementById('board').value = snapshot.val();
 			});
+			database.ref('/<?php echo $_POST['psuedonym']; ?>/collaborate').on('value', function(snapshot) {
+				if(snapshot.val()) document.getElementById('collaborate').checked = true;
+				else document.getElementById('collaborate').checked = false;
+			});
 			function updater(){
-			database.ref('/<?php echo $_POST['psuedonym']; ?>/').set(document.getElementById('board').value);
+			database.ref('/<?php echo $_POST['psuedonym']; ?>/message').set(document.getElementById('board').value);
 			}
+			
+			function handleCollaborate(){
+				if(document.getElementById('collaborate').checked) database.ref('/<?php echo $_POST['psuedonym']; ?>/collaborate').set(true);
+				else 			database.ref('/<?php echo $_POST['psuedonym']; ?>/collaborate').set(false);
+			}
+			
 		</script>
 		<!--JavaScript at end of body for optimized loading-->
 		<script type="text/javascript" src="js/materialize.min.js"></script>
