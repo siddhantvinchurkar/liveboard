@@ -47,7 +47,7 @@
 			// Get a reference to the database service
 			var database = firebase.database();
 			
-			database.ref('/<?php echo $_POST['psuedonym']; ?>').on('value', function(snapshot) {
+			database.ref('/<?php echo $_POST['psuedonym']; ?>/message').on('value', function(snapshot) {
 			document.getElementById('screen').innerHTML = snapshot.val();
 			});
 			
