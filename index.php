@@ -26,7 +26,7 @@
 			</div>
 		</nav>
 		<main>
-			<form action="watch/index.html" method="post" id="form">
+			<form action="watch/index.php" method="post" id="form">
 				<div class="row" style="font-family: 'Ubuntu', sans-serif;">
 					<div class="col s12 m4 offset-m4" id="cardsize">
 						<div class="card" style="margin-top:-5em;">
@@ -127,7 +127,7 @@
 			}
 			function handleBroadcast(){
 				document.getElementById('username').value = document.getElementById('username').value.toLowerCase();
-				document.getElementById('form').action = 'broadcast/index.html';
+				document.getElementById('form').action = 'broadcast/index.php';
 				if(document.getElementById('username').value){
 					if(collaborate) document.getElementById('form').submit();
 					else if(inuse) alert('Sorry, looks like someone is using that board. Try using a different pseudonym.');
