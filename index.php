@@ -1,14 +1,15 @@
+<?php header("Cache-Control: max-age=86400"); ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<!--Import Google Icon Font-->
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
 		<!--Import materialize.css-->
-		<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection">
-		<link rel="shortcut icon" type="image/png" href="images/logo.png">
-		<link rel="icon" sizes="192x192" type="image/png" href="images/logo192.png">
+		<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="none" onload="if(media!='screen,projection')media='screen,projection'">
+		<link rel="shortcut icon" type="image/webp" href="images/logo.webp">
+		<link rel="icon" sizes="192x192" type="image/webp" href="images/logo192.webp">
 		<link rel="manifest" href="manifest.json">
-		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
 		<!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="theme-color" content="#EE6E73">
@@ -16,7 +17,7 @@
 	</head>
 	<title>Liveboard - Real time, collaborative boards</title>
 	<body bgcolor="#F6F6F6">
-		<p id="heading" style="font-family: 'Ubuntu', sans-serif; font-size:8em; text-align:center; color:#FF0000;">Live<span style="color:rgba(0,0,0,0.87);">board</span><img src="images/logo.png" width="10%" height="10%" alt="Unable to load image" /></p>
+		<p id="heading" style="font-family: 'Ubuntu', sans-serif; font-size:8em; text-align:center; color:#FF0000;">Live<span style="color:rgba(0,0,0,0.87);">board</span></p>
 		<nav id="nav" style="display:none;">
 			<div class="nav-wrapper">
 				<a style="font-family: 'Ubuntu', sans-serif; font-size:3em; color:#FFFFFF;" href="#">Live<span style="color:rgba(0,0,0,0.87);">board</span></a>
@@ -84,6 +85,9 @@
 		</script>
 		<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
 		<script>
+			window.onload = function(){
+			document.getElementById('heading').innerHTML = 'Live<span style="color:rgba(0,0,0,0.87);">board</span><img src="images/logo.webp" width="10%" height="10%" alt="Unable to load image" /></p>';
+			}
 			// Initialize Firebase
 			var config = {
 			  apiKey: "AIzaSyAuG-t9DKxuaETJk3-CcGiZjYjTgMcqB5w",
@@ -113,7 +117,6 @@
 			 boards.push(childSnapshot.key);
 			});
 			});
-			
 		</script>
 		<script>
 			function handleWatch(){
@@ -137,6 +140,6 @@
 			}
 		</script>
 		<!--JavaScript at end of body for optimized loading-->
-		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js" async></script>
 	</body>
 </html>

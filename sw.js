@@ -7,8 +7,8 @@ self.addEventListener('install', function(e) {
 				'index.php',
 				'broadcast/index.php',
 				'watch/index.php',
-				'images/logo.png',
-				'images/logo192.png',
+				'images/logo.webp',
+				'images/logo192.webp',
 				'css/materialize.min.css',
 				'manifest.json',
 				'js/materialize.min.js'

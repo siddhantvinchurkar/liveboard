@@ -1,15 +1,16 @@
+<?php header("Cache-Control: max-age=86400"); ?>
 <?php if(!isset($_POST['psuedonym'])) header("Location: ../");?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<!--Import Google Icon Font-->
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
 		<!--Import materialize.css-->
-		<link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection">
-		<link rel="shortcut icon" type="image/png" href="../images/logo.png">
-		<link rel="icon" sizes="192x192" type="image/png" href="../images/logo192.png">
+		<link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="none" onload="if(media!='screen,projection')media='screen,projection'">
+		<link rel="shortcut icon" type="image/webp" href="../images/logo.webp">
+		<link rel="icon" sizes="192x192" type="image/webp" href="../images/logo192.webp">
 		<link rel="manifest" href="../manifest.json">
-		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
 		<!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="theme-color" content="#EE6E73">
@@ -20,7 +21,7 @@
 		<nav>
 			<div class="nav-wrapper">
 				<a style="font-family: 'Ubuntu', sans-serif; font-size:3em; color:#FFFFFF;" href="../">&larr;Live<span style="color:rgba(0,0,0,0.87);">board</span></a>
-				<img class="brand-logo" id="logo" src="../images/logo.png" width="5%" alt="Unable to load image" />
+				<img class="brand-logo" id="logo" src="../images/logo.webp" width="5%" alt="Unable to load image" />
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li style="font-family: 'Ubuntu', sans-serif; font-size:1em;">You're broadcasting to the world! Anyone with your pseudonym "<?php echo $_POST['psuedonym']; ?>" can watch you.<span>&emsp;&emsp;</span></li>
 				</ul>
@@ -57,8 +58,9 @@
 		<script>
 			document.getElementById('myfoot').innerHTML = '&copy; ' + new Date().getFullYear() + ' <a href="https://volatile.ga/" target="_blank" rel="noopener">Volatile, Inc.</a> Made with love for everyone.';
 		</script>
-		<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js" async></script>
 		<script>
+			window.onload = function(){
 			// Initialize Firebase
 			var config = {
 			  apiKey: "AIzaSyAuG-t9DKxuaETJk3-CcGiZjYjTgMcqB5w",
@@ -89,9 +91,9 @@
 				if(document.getElementById('collaborate').checked) database.ref('/<?php echo $_POST['psuedonym']; ?>/collaborate').set(true);
 				else 			database.ref('/<?php echo $_POST['psuedonym']; ?>/collaborate').set(false);
 			}
-			
+			}
 		</script>
 		<!--JavaScript at end of body for optimized loading-->
-		<script type="text/javascript" src="../js/materialize.min.js"></script>
+		<script type="text/javascript" src="../js/materialize.min.js" async></script>
 	</body>
 </html>
