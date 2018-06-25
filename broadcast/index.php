@@ -59,7 +59,7 @@
 			document.getElementById('myfoot').innerHTML = '&copy; ' + new Date().getFullYear() + ' <a href="https://volatile.ga/" target="_blank" rel="noopener">Volatile, Inc.</a> Made with love for everyone.';
 		</script>
 		<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js" async></script>
-		<script>
+		<script type="text/javascript">
 			window.onload = function(){
 			// Initialize Firebase
 			var config = {
@@ -83,13 +83,13 @@
 				if(snapshot.val()) document.getElementById('collaborate').checked = true;
 				else document.getElementById('collaborate').checked = false;
 			});
-			function updater(){
+			window.updater = function(){
 			database.ref('/<?php echo $_POST['psuedonym']; ?>/message').set(document.getElementById('board').value);
 			}
 			
-			function handleCollaborate(){
+			window.handleCollaborate = function(){
 				if(document.getElementById('collaborate').checked) database.ref('/<?php echo $_POST['psuedonym']; ?>/collaborate').set(true);
-				else 			database.ref('/<?php echo $_POST['psuedonym']; ?>/collaborate').set(false);
+				else database.ref('/<?php echo $_POST['psuedonym']; ?>/collaborate').set(false);
 			}
 			}
 		</script>
